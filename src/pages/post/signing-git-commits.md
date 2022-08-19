@@ -170,7 +170,7 @@ This is because the passphrase prompt won't be shown on your Windows system thro
 
 6. Add this line to the file. If your path of Gpg4win differs, adjust it.
 
-   ```conf
+   ```
    pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry-basic.exe"
    ```
 
