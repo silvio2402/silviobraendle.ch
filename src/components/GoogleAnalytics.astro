@@ -1,0 +1,19 @@
+---
+const { gtag } = Astro.props
+---
+
+<!-- Google tag (gtag.js) -->
+<script
+  type="text/partytown"
+  src={`https://www.googletagmanager.com/gtag/js?id=${gtag}`}
+></script>
+<script type="text/partytown" data-gtag={gtag}>
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+
+  const gtagId = document.currentScript.getAttribute('data-gtag')
+  gtag('config', gtagId)
+</script>

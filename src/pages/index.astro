@@ -4,11 +4,17 @@ import MainHead from '../components/MainHead.astro'
 import Button from '../components/Button/index.jsx'
 import Nav from '../components/Nav/index.jsx'
 import Footer from '../components/Footer/index.jsx'
-import PortfolioPreview from '../components/PortfolioPreview/index.jsx'
+import PostPreview from '../components/PostPreview/index.jsx'
 
 // Data Fetching: List all Markdown posts in the repo.
-const projects = await Astro.glob('./project/**/*.md')
-const featuredProject = projects[0]
+const posts = (await Astro.glob('./post/**/*.md'))
+	.filter(({ frontmatter }) => !!frontmatter.publishDate)
+	.sort(
+		(a, b) =>
+			new Date(b.frontmatter.publishDate).valueOf() -
+			new Date(a.frontmatter.publishDate).valueOf()
+	)
+const latestPost = posts[0]
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -17,8 +23,8 @@ const featuredProject = projects[0]
 <html lang="en">
 	<head>
 		<MainHead
-			title="Jeanine White: Personal Site"
-			description="Jeanine White: Developer, Speaker, and Writer..."
+			title="Silvio Brändle: Personal Site"
+			description="Silvio Brändle: Tech, code, and electronics"
 		/>
 		<style lang="scss">
 			$w-s: 750px;
@@ -102,6 +108,14 @@ const featuredProject = projects[0]
 				margin-bottom: 2rem;
 			}
 
+			.roleWrapper {
+				display: flex;
+				gap: 2em;
+				@media (max-width: 500px) {
+					gap: 1em;
+				}
+			}
+
 			.role {
 				position: relative;
 				display: inline-block;
@@ -116,7 +130,7 @@ const featuredProject = projects[0]
 				}
 
 				+ .role {
-					margin-left: 1em;
+					// margin-left: 1em;
 				}
 
 				&:nth-of-type(1) {
@@ -201,29 +215,27 @@ const featuredProject = projects[0]
 			<div class="gradient2"></div>
 			<div class="overlay">
 				<h1 class="title">
-					<small class="subtitle">The personal site of</small>Jeanine White
+					<small class="subtitle">The personal site of</small>Silvio Brändle
 				</h1>
-				<div>
+				<div class="roleWrapper">
+					<span class="role">👩‍💻 Code <span class="invert">👩‍💻 Code</span></span>
 					<span class="role"
-						>👩‍💻 Developer <span class="invert">👩‍💻 Developer</span>
-					</span>&nbsp;
+						>⚙️ Technology <span class="invert">⚙️ Technology</span>
+					</span>
 					<span class="role"
-						>🎤 Speaker <span class="invert">🎤 Speaker</span>
-					</span>&nbsp;
-					<span class="role"
-						>✏️ Writer <span class="invert">✏️ Writer</span>
+						>🔌 Electonics <span class="invert">🔌 Electonics</span>
 					</span>
 				</div>
-				<p class="desc">Lover of dogs, roadtrips, and poetry.</p>
+				<p class="desc">Lover of tech, code, and electronics.</p>
 			</div>
 		</header>
 		<main class="wrapper mt4 mb4">
 			<div class="grid">
 				<div class="section">
-					<h3 class="sectionTitle">Selected Work</h3>
-					<PortfolioPreview project={featuredProject} />
+					<h3 class="sectionTitle">Latest Post</h3>
+					{latestPost ? <PostPreview post={latestPost} /> : null}
 					<div class="tac mt4">
-						<a href="/projects">
+						<a href="/posts">
 							<Button>View All</Button>
 						</a>
 					</div>
@@ -231,16 +243,8 @@ const featuredProject = projects[0]
 				<div class="section">
 					<h3 class="sectionTitle">About me</h3>
 					<p class="bio">
-						<span>Hello!</span> I’m Jeanine, and this is my website. It was made
-						using{' '}
-						<a
-							href="https://github.com/withastro/astro"
-							target="_blank"
-							rel="nofollow"
-						>
-							Astro
-						</a>, a new way to build static sites. This is just an example
-						template for you to modify.
+						<span>Hello!</span> I’m Silvio, and this is my website where I post cool
+						technologies, my projects, and instructions.
 					</p>
 					<p>
 						<a href="/about">Read more</a>

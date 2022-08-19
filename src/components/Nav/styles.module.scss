@@ -13,6 +13,11 @@
   text-decoration: none;
 }
 
+.logo {
+  height: 2em;
+  pointer-events: none;
+}
+
 .link {
   color: var(--t-subdue);
   display: block;

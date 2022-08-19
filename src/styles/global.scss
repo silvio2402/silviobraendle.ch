@@ -161,3 +161,39 @@ $colors: 'black', 'blue', 'white';
 .wrapper__readable {
   max-width: 50em;
 }
+
+[class*='rowcontainer'] {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  gap: 0.5em;
+  margin-bottom: 26px;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+.rowcontainer3x > * {
+  max-width: calc(100% / 3);
+}
+.rowcontainer2x > * {
+  max-width: calc(100% / 2);
+}
+@media (max-width: 500px) {
+  [class*='rowcontainer'] > * {
+    max-width: initial;
+  }
+}
+.justifycontentstart {
+  justify-content: flex-start;
+}
+.nomargin {
+  margin: 0 0;
+}
+.max250w {
+  max-width: 250px;
+}
+
+img {
+  object-fit: contain;
+}
