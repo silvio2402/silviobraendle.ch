@@ -5,6 +5,8 @@ const {
 	title = 'Silvio Brändle: Personal Site',
 	description = 'The personal site of Silvio Brändle',
 } = Astro.props
+
+const envMode: string = import.meta.env.MODE
 ---
 
 <meta charset="UTF-8" />
@@ -25,8 +27,4 @@ const {
 />
 <link href="/prism-vsc-dark-plus.css" rel="stylesheet" />
 
-{
-	import.meta.env.MODE === 'production' ? (
-		<GoogleAnalytics gtag="G-KZC2PCS83T" />
-	) : null
-}
+{envMode === 'production' ? <GoogleAnalytics gtag="G-KZC2PCS83T" /> : null}

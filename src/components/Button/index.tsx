@@ -1,7 +1,12 @@
 import { h } from 'preact'
 import Styles from './styles.module.scss'
 
-function Button({ children }) {
+interface ButtonProps {
+  children: React.ReactNode
+}
+
+function Button(props: ButtonProps) {
+  const { children } = props
   return <span className={Styles.button}>{children}</span>
 }
 

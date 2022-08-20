@@ -1,14 +1,25 @@
 import { h } from 'preact'
 import Styles from './styles.module.scss'
-import Tag from '../Tag/index.tsx'
+import Tag from '../Tag/index'
+import type { MarkdownInstance } from 'astro'
 
-function PostPreview({ post, tags }) {
+interface PostPreviewProps {
+  post: MarkdownInstance<Record<string, any>>
+  tags: Array<string>
+}
+
+function PostPreview(props: PostPreviewProps) {
+  const { post, tags } = props
   const { frontmatter } = post
+  const postTags: Array<string> = Array.isArray(frontmatter.tags)
+    ? frontmatter.tags
+    : []
+
   return (
     <div className={Styles.card}>
       <div
         className={Styles.titleCard}
-        style={`background-image:url(${frontmatter.img})`}
+        style={{ backgroundImage: `url(${frontmatter.img})` }}
       >
         <h1 className={Styles.title}>{frontmatter.title}</h1>
       </div>
@@ -16,7 +27,7 @@ function PostPreview({ post, tags }) {
         <p className={`${Styles.desc} mt0 mb2`}>{frontmatter.description}</p>
         <div className={Styles.tags}>
           Tagged:
-          {frontmatter.tags?.map((t) => (
+          {postTags.map((t) => (
             <Tag tag={t} index={tags.indexOf(t)} />
           ))}
         </div>

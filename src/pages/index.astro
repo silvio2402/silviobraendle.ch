@@ -1,10 +1,10 @@
 ---
 // Component Imports
 import MainHead from '../components/MainHead.astro'
-import Button from '../components/Button/index.jsx'
-import Nav from '../components/Nav/index.jsx'
-import Footer from '../components/Footer/index.jsx'
-import PostPreview from '../components/PostPreview/index.jsx'
+import Button from '../components/Button/index'
+import Nav from '../components/Nav/index'
+import Footer from '../components/Footer/index'
+import PostPreview from '../components/PostPreview/index'
 
 // Data Fetching: List all Markdown posts in the repo.
 const posts = (await Astro.glob('./post/**/*.md'))
