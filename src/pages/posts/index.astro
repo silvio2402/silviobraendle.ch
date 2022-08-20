@@ -1,0 +1,81 @@
+---
+import MainHead from '../../components/MainHead.astro'
+import Footer from '../../components/Footer/index.jsx'
+import Nav from '../../components/Nav/index.jsx'
+import Tag from '../../components/Tag/index'
+import PostPreview from '../../components/PostPreview/index.jsx'
+
+const tag = Astro.params.tag as string | undefined
+
+const posts = (await Astro.glob('../post/**/*.md'))
+	.filter(({ frontmatter }) => !!frontmatter.publishDate)
+	.sort(
+		(a, b) =>
+			new Date(b.frontmatter.publishDate).valueOf() -
+			new Date(a.frontmatter.publishDate).valueOf()
+	)
+
+let tags = posts.flatMap((post) =>
+	post.frontmatter.tags ? post.frontmatter.tags : []
+)
+let tagCounts: Record<string, number> = {}
+for (const tag of tags) {
+	tagCounts[tag] = (tagCounts[tag] || 0) + 1
+}
+tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
+---
+
+<html lang="en">
+	<head>
+		<MainHead
+			title="All Posts | Silvio Brändle"
+			description="Learn about Silvio Brändle's most recent posts"
+		/>
+		<style lang="scss">
+			.grid {
+				display: grid;
+				grid-gap: 3rem;
+			}
+			.tagswrapper {
+				margin-bottom: 2rem;
+				margin-top: -1rem;
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Nav />
+		<div class="wrapper">
+			<h1 class="title mt4 mb4">All Posts</h1>
+			<div class="tagswrapper">
+				<div class="tags">
+					{
+						tags.map((t) => (
+							<Tag
+								tag={t}
+								index={tags.indexOf(t)}
+								count={tagCounts[t]}
+								tagFilter={true}
+								currTag={tag}
+							/>
+						))
+					}
+				</div>
+			</div>
+			<div class="grid">
+				{
+					posts.map((post) =>
+						!tag || post.frontmatter.tags?.includes(tag) ? (
+							<PostPreview post={post} tags={tags} />
+						) : null
+					)
+				}
+			</div>
+		</div>
+		<Footer />
+	</body>
+</html>

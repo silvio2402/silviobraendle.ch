@@ -1,0 +1,27 @@
+---
+import Index from './index.astro'
+
+const tag = Astro.params.tag ? String(Astro.params.tag) : undefined
+
+export async function getStaticPaths() {
+  const posts = (await Astro.glob('../post/**/*.md'))
+    .filter(({ frontmatter }) => !!frontmatter.publishDate)
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.publishDate).valueOf() -
+        new Date(a.frontmatter.publishDate).valueOf()
+    )
+
+  let tags = posts.flatMap((post) =>
+    post.frontmatter.tags ? post.frontmatter.tags : []
+  )
+  let tagCounts: Record<string, number> = {}
+  for (const tag of tags) {
+    tags[tag] = (tags[tag] || 0) + 1
+  }
+  tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
+  return tags.map((tag) => ({ params: { tag } }))
+}
+---
+
+<Index tag={tag} />

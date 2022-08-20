@@ -1,0 +1,48 @@
+.tag {
+  display: inline-block;
+  color: var(--c-yellow);
+  text-transform: uppercase;
+  margin-left: 0.5em;
+  text-decoration: none;
+}
+.tagfilter {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid;
+  border-radius: 0.5rem;
+  user-select: none;
+  cursor: pointer;
+}
+.tag0 {
+  color: var(--c-green);
+  &.selected {
+    background-color: var(--c-green);
+    color: white;
+    border-color: var(--c-green);
+  }
+}
+.tag1 {
+  color: var(--c-orange);
+  &.selected {
+    background-color: var(--c-orange);
+    color: white;
+    border-color: var(--c-orange);
+  }
+}
+.tag2 {
+  color: var(--c-blue);
+  &.selected {
+    background-color: var(--c-blue);
+    color: white;
+    border-color: var(--c-blue);
+  }
+}
+.tag3 {
+  color: var(--c-pink);
+  &.selected {
+    background-color: var(--c-pink);
+    color: white;
+    border-color: var(--c-pink);
+  }
+}

@@ -3,8 +3,26 @@ import MainHead from '../components/MainHead.astro'
 import Button from '../components/Button/index.jsx'
 import Footer from '../components/Footer/index.jsx'
 import Nav from '../components/Nav/index.jsx'
+import Tag from '../components/Tag/index'
 
 const { content } = Astro.props
+
+const posts = (await Astro.glob('../pages/post/**/*.md'))
+	.filter(({ frontmatter }) => !!frontmatter.publishDate)
+	.sort(
+		(a, b) =>
+			new Date(b.frontmatter.publishDate).valueOf() -
+			new Date(a.frontmatter.publishDate).valueOf()
+	)
+
+let tags = posts.flatMap((post) =>
+	post.frontmatter.tags ? post.frontmatter.tags : []
+)
+let tagCounts: Record<string, number> = {}
+for (const tag of tags) {
+	tags[tag] = (tags[tag] || 0) + 1
+}
+tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
 ---
 
 <html lang={content.lang || 'en'}>
@@ -74,7 +92,11 @@ const { content } = Astro.props
 		</header>
 		<div class="leadIn">
 			<div class="wrapper pt8 pb8 mb8 tac">
-				{content.tags.map((t) => <span class="tag">{t}</span>)}
+				{
+					content.tags?.map((t: string) => (
+						<Tag tag={t} index={tags.indexOf(t)} />
+					))
+				}
 				<h3 class="tagline">{content.description}</h3>
 			</div>
 		</div>

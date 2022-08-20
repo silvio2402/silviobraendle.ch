@@ -14,6 +14,16 @@ const posts = (await Astro.glob('./post/**/*.md'))
 			new Date(b.frontmatter.publishDate).valueOf() -
 			new Date(a.frontmatter.publishDate).valueOf()
 	)
+
+let tags = posts.flatMap((post) =>
+	post.frontmatter.tags ? post.frontmatter.tags : []
+)
+let tagCounts: Record<string, number> = {}
+for (const tag of tags) {
+	tags[tag] = (tags[tag] || 0) + 1
+}
+tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
+
 const latestPost = posts[0]
 
 // Full Astro Component Syntax:
@@ -232,7 +242,7 @@ const latestPost = posts[0]
 			<div class="grid">
 				<div class="section">
 					<h3 class="sectionTitle">Latest Post</h3>
-					{latestPost ? <PostPreview post={latestPost} /> : null}
+					{latestPost ? <PostPreview post={latestPost} tags={tags} /> : null}
 					<div class="tac mt4">
 						<a href="/posts">
 							<Button>View All</Button>

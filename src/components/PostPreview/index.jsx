@@ -1,7 +1,8 @@
 import { h } from 'preact'
 import Styles from './styles.module.scss'
+import Tag from '../Tag/index.tsx'
 
-function PostPreview({ post }) {
+function PostPreview({ post, tags }) {
   const { frontmatter } = post
   return (
     <div className={Styles.card}>
@@ -15,10 +16,8 @@ function PostPreview({ post }) {
         <p className={`${Styles.desc} mt0 mb2`}>{frontmatter.description}</p>
         <div className={Styles.tags}>
           Tagged:
-          {frontmatter.tags.map((t) => (
-            <div className={Styles.tag} data-tag={t}>
-              {t}
-            </div>
+          {frontmatter.tags?.map((t) => (
+            <Tag tag={t} index={tags.indexOf(t)} />
           ))}
         </div>
         <a className={Styles.link} href={post.url}>

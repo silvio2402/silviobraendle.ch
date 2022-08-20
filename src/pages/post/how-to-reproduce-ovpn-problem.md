@@ -8,7 +8,7 @@ description: |
   In this post I will explain the steps required to measure and reproduce the issue with OVPN Public IPv4.
 tags:
   - networking
-  - instrucions
+  - instructions
 ---
 
 ## The Issue
