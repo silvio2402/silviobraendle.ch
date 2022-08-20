@@ -11,8 +11,7 @@
   padding: 0.2rem 0.5rem;
   border: 1px solid;
   border-radius: 0.5rem;
-  user-select: none;
-  cursor: pointer;
+  filter: saturate(2);
 }
 .tag0 {
   color: var(--c-green);
