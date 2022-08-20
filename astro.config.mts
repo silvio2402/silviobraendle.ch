@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config'
 import preact from '@astrojs/preact'
 import prefetch from '@astrojs/prefetch'
 import sitemap from '@astrojs/sitemap'
-
 import UrlPattern from 'url-pattern'
+import partytown from '@astrojs/partytown'
 
 const sitemapExclusions: Array<UrlPattern> = [new UrlPattern('/posts/:tag')]
 
@@ -21,6 +21,7 @@ export default defineConfig({
           (sitemapExclusion) => !sitemapExclusion.match(new URL(page).pathname)
         ),
     }),
+    partytown(),
   ],
   markdown: {
     // Can be 'shiki' (default), 'prism' or false to disable highlighting
