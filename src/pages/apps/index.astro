@@ -1,0 +1,32 @@
+---
+import MainHead from '../../components/MainHead.astro'
+import Footer from '../../components/Footer/index'
+import Nav from '../../components/Nav/index'
+import AppPreview from '../../components/AppPreview/index'
+import apps from '../../apps/index'
+---
+
+<html lang="en">
+  <head>
+    <MainHead
+      title="Apps | Silvio Brändle"
+      description="View Silvio Brändle's apps"
+    />
+    <style lang="scss">
+      .grid {
+        display: grid;
+        grid-gap: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Nav />
+    <div class="wrapper">
+      <h1 class="title mt4 mb4">Apps</h1>
+      <div class="grid">
+        {apps.map((app) => <AppPreview app={app} />)}
+      </div>
+    </div>
+    <Footer />
+  </body>
+</html>

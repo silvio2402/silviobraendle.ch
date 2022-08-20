@@ -24,6 +24,12 @@ function Nav() {
     },
     {
       className: Styles.link,
+      href: '/apps',
+      content: 'Apps',
+      label: 'Apps',
+    },
+    {
+      className: Styles.link,
       href: '/about',
       content: 'About',
       label: 'About',
