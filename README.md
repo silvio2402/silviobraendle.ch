@@ -1,5 +1,7 @@
 # Silvio Brändle's personal web site
 
+[![Github Pages Astro CI](https://github.com/silvio2402/silviobraendle.ch-new/actions/workflows/deploy.yml/badge.svg)](https://github.com/silvio2402/silviobraendle.ch-new/actions/workflows/deploy.yml)
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
