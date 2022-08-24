@@ -1,7 +1,6 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
 
-import 'preact-material-components/Button/style.css'
 import Typography from 'preact-material-components/Typography'
 import Button from 'preact-material-components/Button'
 
@@ -28,7 +27,7 @@ const Counter = () => {
         </Button>
         <Button
           ripple
-          raised
+          outlined
           onClick={() => setTimeout(() => setCount((count) => count + 1), 2000)}
         >
           Increase Async (2s)
@@ -45,7 +44,7 @@ const Counter = () => {
         </Button>
         <Button
           ripple
-          raised
+          outlined
           onClick={() => setTimeout(() => setCount((count) => count - 1), 2000)}
         >
           Decrease Async (2s)
