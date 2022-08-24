@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import Styles from './styles.module.scss'
-import type { App } from '../../apps/index'
+import type { App } from '../../apps/apps'
 
 interface AppPreviewProps {
   app: App

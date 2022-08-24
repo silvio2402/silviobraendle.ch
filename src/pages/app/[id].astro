@@ -3,7 +3,9 @@ import MainHead from '../../components/MainHead.astro'
 import Button from '../../components/Button/index'
 import Footer from '../../components/Footer/index'
 import Nav from '../../components/Nav/index'
-import apps from '../../apps/index'
+
+import Counter from '../../apps/Counter'
+import apps, { getApp } from '../../apps/apps'
 
 const id = Astro.params.id ? String(Astro.params.id) : undefined
 
@@ -11,8 +13,7 @@ export async function getStaticPaths() {
 	return apps.map((app) => ({ params: { id: app.id } }))
 }
 
-const app = apps.find((app) => app.id === id)
-const App = app?.App || 'div'
+const app = id ? getApp(id) : null
 ---
 
 <html lang={app?.lang || 'en'}>
@@ -86,7 +87,9 @@ const App = app?.App || 'div'
 			</div>
 		</div>
 		<div class="wrapper wrapper__readable">
-			<div class="content"><App client:only /></div>
+			<div class="content">
+				{app?.id == 'counter' && <Counter client:only="preact" />}
+			</div>
 		</div>
 		<Footer />
 	</body>
