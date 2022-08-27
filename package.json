@@ -20,6 +20,7 @@
     "sass": "^1.54.4"
   },
   "dependencies": {
+    "@js-temporal/polyfill": "^0.4.2",
     "preact": "^10.10.5",
     "url-pattern": "^1.0.3"
   }

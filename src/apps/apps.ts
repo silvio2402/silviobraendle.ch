@@ -13,6 +13,13 @@ export interface App {
 export const apps: Array<App> = [
   {
     details: {
+      title: 'Stopwatch',
+      description: 'Keep track of how long something took with this stopwatch.',
+    },
+    id: 'stopwatch',
+  },
+  {
+    details: {
       title: 'Counter',
       description: 'Straightforward counter application for testing purposes.',
     },

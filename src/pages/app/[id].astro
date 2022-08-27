@@ -7,6 +7,7 @@ import Nav from '../../components/Nav/index'
 import 'preact-material-components/style.css'
 
 import Counter from '../../apps/Counter'
+import StopWatch from '../../apps/StopWatch'
 import apps, { getApp } from '../../apps/apps'
 
 const id = Astro.params.id ? String(Astro.params.id) : undefined
@@ -20,7 +21,9 @@ const app = id ? getApp(id) : null
 
 <html lang={app?.lang || 'en'}>
 	<head>
-		<MainHead title={app?.details.title} description={app?.details.description}
+		<MainHead
+			title={app?.details.title}
+			description={app?.details.description}
 		/>
 		<style lang="scss">
 			.hero {
@@ -91,6 +94,7 @@ const app = id ? getApp(id) : null
 		<div class="wrapper wrapper__readable">
 			<div class="content">
 				{app?.id == 'counter' && <Counter client:only="preact" />}
+				{app?.id == 'stopwatch' && <StopWatch client:only="preact" />}
 			</div>
 		</div>
 		<Footer />
