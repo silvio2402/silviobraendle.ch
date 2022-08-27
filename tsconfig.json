@@ -17,6 +17,10 @@
     "importsNotUsedAsValues": "error",
 
     // Allow Synthetic Default Imports
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+
+    // Preact Typescript Configuration
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }
