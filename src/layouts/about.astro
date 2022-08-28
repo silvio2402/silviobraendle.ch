@@ -36,7 +36,7 @@ const { content } = Astro.props
 	</head>
 	<body>
 		<Nav />
-		<div class="wrapper">
+		<main class="wrapper">
 			{
 				content.img ? (
 					<div class="heroImg">
@@ -47,7 +47,7 @@ const { content } = Astro.props
 			<div class="wrapper wrapper__readable">
 				<div class="content"><slot /></div>
 			</div>
-		</div>
+		</main>
 		<Footer />
 	</body>
 </html>

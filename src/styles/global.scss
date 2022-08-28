@@ -80,6 +80,10 @@ h1 {
   font-size: var(--f-u8);
 }
 
+main {
+  overflow: auto;
+}
+
 // Utils
 
 // color
@@ -161,6 +165,8 @@ $colors: 'black', 'blue', 'white';
 .wrapper__readable {
   max-width: 50em;
 }
+
+// Styles used in markdown
 
 [class*='rowcontainer'] {
   display: flex;

@@ -32,6 +32,7 @@ const app = id ? getApp(id) : null
 				background-color: var(--t-fg);
 				background-repeat: no-repeat;
 				background-size: cover;
+				background-position: center;
 				color: white;
 				flex-direction: column;
 				align-items: center;
@@ -83,20 +84,23 @@ const app = id ? getApp(id) : null
 	</head>
 	<body>
 		<Nav />
-		<header style={`background-image:url(${app?.details.img})`} class="hero">
+		<header
+			style={`background-image:url(${app?.details.img})`}
+			class="hero mb8"
+		>
 			<h1 class="title">{app?.details.title}</h1>
-		</header>
-		<div class="leadIn">
-			<div class="wrapper pt8 pb8 mb8 tac">
-				<h3 class="tagline">{app?.details.description}</h3>
+			<div class="leadIn">
+				<div class="wrapper tac">
+					<h3 class="tagline">{app?.details.description}</h3>
+				</div>
 			</div>
-		</div>
-		<div class="wrapper wrapper__readable">
+		</header>
+		<main class="wrapper wrapper__readable">
 			<div class="content">
 				{app?.id == 'counter' && <Counter client:only="preact" />}
 				{app?.id == 'stopwatch' && <StopWatch client:only="preact" />}
 			</div>
-		</div>
+		</main>
 		<Footer />
 	</body>
 </html>

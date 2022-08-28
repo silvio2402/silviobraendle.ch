@@ -17,16 +17,19 @@ import apps from '../../apps/apps'
         display: grid;
         grid-gap: 3rem;
       }
+      .gridcols {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
     </style>
   </head>
   <body>
     <Nav />
-    <div class="wrapper">
+    <main class="wrapper">
       <h1 class="title mt4 mb4">Apps</h1>
-      <div class="grid">
+      <div class="grid gridcols">
         {apps.map((app) => <AppPreview app={app} />)}
       </div>
-    </div>
+    </main>
     <Footer />
   </body>
 </html>

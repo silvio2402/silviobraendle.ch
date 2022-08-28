@@ -6,13 +6,9 @@
 }
 
 .title {
-  position: absolute;
-  top: 0;
   width: calc(100% - 2rem);
-  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin: 0;
   color: white;
   flex-direction: column;
@@ -24,10 +20,18 @@
 }
 
 .titleCard {
-  position: relative;
   background-size: cover;
   background-position: 50% 100%;
-  padding-top: 37.5%;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    padding-top: 37.5%;
+    z-index: -1;
+  }
 }
 
 .desc {
@@ -39,10 +43,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: var(--t-bg);
@@ -73,12 +76,8 @@
   transform: translateY(25%);
 }
 
-.nav {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .tags {
   font-size: var(--f-d2);
+  line-height: 1.5;
   text-transform: uppercase;
 }

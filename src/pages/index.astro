@@ -42,44 +42,28 @@ const latestPost = posts[0]
 			.hero {
 				position: relative;
 				overflow: hidden;
+				background-image: url('/assets/mesh-gradient.jpg');
+				background-size: cover;
+
+				height: 50vw;
+				max-height: 500px;
 
 				@media (min-width: $w-s) {
 					height: 45vw;
 				}
-			}
 
-			.img {
-				display: block;
-				width: 100%;
-				height: auto;
-			}
-
-			.gradient,
-			.gradient2 {
-				background-image: url('/assets/mesh-gradient.jpg');
-				background-size: cover;
-				pointer-events: none;
-				mix-blend-mode: screen;
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: 2;
-			}
-
-			.gradient2 {
-				mix-blend-mode: multiply;
-				background-size: cover;
+				@media (max-width: 430px) {
+					height: 300px;
+				}
 			}
 
 			.overlay {
 				position: absolute;
 				top: 0;
 				left: 0;
-				width: 100%;
+				right: 0;
 				height: 100%;
-				z-index: 10;
+				// z-index: 10;
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
@@ -120,9 +104,10 @@ const latestPost = posts[0]
 
 			.roleWrapper {
 				display: flex;
-				gap: 2em;
+				flex-wrap: wrap;
+				gap: 2rem;
 				@media (max-width: 500px) {
-					gap: 1em;
+					gap: 1rem;
 				}
 			}
 
@@ -166,6 +151,11 @@ const latestPost = posts[0]
 						clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 					}
 				}
+				.roleemoji {
+					@media (max-width: 430px) {
+						display: none;
+					}
+				}
 			}
 
 			.invert {
@@ -174,8 +164,8 @@ const latestPost = posts[0]
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 100%;
-				height: 100%;
+				right: 0;
+				bottom: 0;
 				top: 0;
 				left: 0;
 				pointer-events: none;
@@ -198,7 +188,6 @@ const latestPost = posts[0]
 
 			.bio {
 				line-height: 2;
-				margin-bottom: 2rem;
 
 				> span:first-of-type {
 					line-height: 1;
@@ -213,27 +202,27 @@ const latestPost = posts[0]
 	<body>
 		<Nav />
 		<header class="hero">
-			<img
-				width="1600"
-				height="1131"
-				class="img"
-				src="/assets/mesh-gradient.jpg"
-				sizes="(max-width: 800px) 800px, (max-width: 1200px) 1200px, (max-width: 1600px) 1600px, (max-width: 2400px) 2400px, 1200px"
-				alt=""
-			/>
-			<div class="gradient"></div>
-			<div class="gradient2"></div>
 			<div class="overlay">
 				<h1 class="title">
 					<small class="subtitle">The personal site of</small>Silvio Brändle
 				</h1>
 				<div class="roleWrapper">
-					<span class="role">👩‍💻 Code <span class="invert">👩‍💻 Code</span></span>
 					<span class="role"
-						>⚙️ Technology <span class="invert">⚙️ Technology</span>
+						><span class="roleemoji">👩‍💻</span>&nbsp;Code<span class="invert"
+							><span class="roleemoji">👩‍💻</span>&nbsp;Code</span
+						>
 					</span>
 					<span class="role"
-						>🔌 Electonics <span class="invert">🔌 Electonics</span>
+						><span class="roleemoji">⚙️</span>&nbsp;Technology<span
+							class="invert"
+							><span class="roleemoji">⚙️</span>&nbsp;Technology</span
+						>
+					</span>
+					<span class="role"
+						><span class="roleemoji">🔌</span>&nbsp;Electonics<span
+							class="invert"
+							><span class="roleemoji">🔌</span>&nbsp;Electonics</span
+						>
 					</span>
 				</div>
 				<p class="desc">Lover of tech, code, and electronics.</p>
@@ -241,7 +230,7 @@ const latestPost = posts[0]
 		</header>
 		<main class="wrapper mt4 mb4">
 			<div class="grid">
-				<div class="section">
+				<section class="section">
 					<h3 class="sectionTitle">Latest Post</h3>
 					{latestPost ? <PostPreview post={latestPost} tags={tags} /> : null}
 					<div class="tac mt4">
@@ -249,17 +238,18 @@ const latestPost = posts[0]
 							<Button>View All</Button>
 						</a>
 					</div>
-				</div>
-				<div class="section">
+				</section>
+				<section class="section">
 					<h3 class="sectionTitle">About me</h3>
 					<p class="bio">
 						<span>Hello!</span> I’m Silvio, and this is my website where I post cool
-						technologies, my projects, and instructions.
+						technologies, my projects, and instructions. You can also use my interactive
+						apps.
 					</p>
 					<p>
 						<a href="/about" aria-label="Read more about me">Read more</a>
 					</p>
-				</div>
+				</section>
 			</div>
 		</main>
 		<Footer />

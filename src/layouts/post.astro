@@ -35,6 +35,7 @@ tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
 				background-color: var(--t-fg);
 				background-repeat: no-repeat;
 				background-size: cover;
+				background-position: center;
 				min-height: 25vw;
 				color: white;
 				flex-direction: column;
@@ -100,9 +101,9 @@ tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
 				<h3 class="tagline">{content.description}</h3>
 			</div>
 		</div>
-		<div class="wrapper wrapper__readable">
+		<main class="wrapper wrapper__readable">
 			<div class="content"><slot /></div>
-		</div>
+		</main>
 		<footer class="tac mt6">
 			<a href="/posts">
 				<Button>View More</Button>

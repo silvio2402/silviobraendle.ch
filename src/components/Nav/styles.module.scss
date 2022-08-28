@@ -1,10 +1,9 @@
 .nav {
   display: flex;
   align-items: center;
-  padding-top: 1rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  overflow-x: auto;
 }
 
 .logolink {
@@ -12,6 +11,9 @@
   color: var(--t-fg);
   text-decoration: none;
   margin-right: 1rem;
+  @media (max-width: 350px) {
+    display: none;
+  }
 }
 
 .logo {
@@ -22,8 +24,7 @@
 .link {
   color: var(--t-subdue);
   display: block;
-  margin: 0 0.25rem;
-  padding: 0.75em 0.25rem;
+  padding: 0.5rem 0.25rem;
   text-decoration: none;
   font-size: var(--f-d1);
   text-transform: uppercase;
@@ -40,7 +41,6 @@
   justify-content: center;
   width: 2em;
   height: 2em;
-  margin-right: 0.5rem;
   color: var(--c-black);
   font-weight: 900;
   letter-spacing: -0.125rem;
@@ -50,10 +50,11 @@
 
 .social {
   display: block;
+  padding: 0.25rem;
   margin-left: auto;
 
   + .social {
-    margin-left: 0.75rem;
+    margin-left: 0;
   }
 }
 
