@@ -25,7 +25,7 @@ I will install an OpenVPN server on my Raspberry Pi with Ubuntu, which I mainly 
 
 ## Installation
 
-For the installation, I like to use [this](https://github.com/Nyr/openvpn-install) install script, which has been around for nine years. To download an run the install script, you can execute this command:
+For the installation, I like to use [this](https://github.com/Nyr/openvpn-install) install script, which has been around for nine years. To download and run the install script, you can execute this command:
 
 ```bash
 wget https://git.io/vpn -O openvpn-install.sh && sudo bash openvpn-install.sh
