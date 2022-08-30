@@ -12,6 +12,13 @@ export interface App {
 export const apps: Array<App> = [
   {
     details: {
+      title: 'Simon Game',
+      description: 'Play the simon game online.',
+    },
+    id: 'simon-game',
+  },
+  {
+    details: {
       title: 'Stopwatch',
       description: 'Keep track of how long something took with this stopwatch.',
     },

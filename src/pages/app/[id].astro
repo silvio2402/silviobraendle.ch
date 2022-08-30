@@ -8,8 +8,7 @@ import 'preact-material-components/style.css'
 
 import Counter from '../../apps/Counter/index'
 import StopWatch from '../../apps/StopWatch/index'
-import Counter from '../../apps/Counter'
-import StopWatch from '../../apps/StopWatch'
+import SimonGame from '../../apps/SimonGame/index'
 import apps, { getApp } from '../../apps/apps'
 
 const id = Astro.params.id ? String(Astro.params.id) : undefined
@@ -101,6 +100,7 @@ const app = id ? getApp(id) : null
 			<div class="content">
 				{app?.id == 'counter' && <Counter client:only="preact" />}
 				{app?.id == 'stopwatch' && <StopWatch client:only="preact" />}
+				{app?.id == 'simon-game' && <SimonGame client:only="preact" />}
 			</div>
 		</main>
 		<Footer />
