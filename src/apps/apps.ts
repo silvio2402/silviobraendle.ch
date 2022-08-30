@@ -3,7 +3,6 @@ export interface AppDetails {
   description: string
   img?: string
 }
-
 export interface App {
   details: AppDetails
   id: string

@@ -6,6 +6,8 @@ import Nav from '../../components/Nav/index'
 
 import 'preact-material-components/style.css'
 
+import Counter from '../../apps/Counter/index'
+import StopWatch from '../../apps/StopWatch/index'
 import Counter from '../../apps/Counter'
 import StopWatch from '../../apps/StopWatch'
 import apps, { getApp } from '../../apps/apps'
@@ -95,7 +97,7 @@ const app = id ? getApp(id) : null
 				</div>
 			</div>
 		</header>
-		<main class="wrapper wrapper__readable">
+		<main class="wrapper wrapper__readable wrapper__app">
 			<div class="content">
 				{app?.id == 'counter' && <Counter client:only="preact" />}
 				{app?.id == 'stopwatch' && <StopWatch client:only="preact" />}

@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min-content;
+}
+
+.viewcontainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  width: min-content;
+  text-align: center;
+}
+
+.buttonscontainer {
+  display: flex;
+  gap: 1rem;
+}

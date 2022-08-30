@@ -1,26 +1,14 @@
 import 'preact/debug'
 import type { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
-
 import { Temporal } from '@js-temporal/polyfill'
+import { useWidthCondition, zeroPad } from '../util'
+
+import Styles from './styles.module.scss'
 
 import Typography from 'preact-material-components/Typography'
 import Button from 'preact-material-components/Button'
 import List from 'preact-material-components/List'
-
-const zeroPad = (num: number, places: number) =>
-  String(num).padStart(places, '0')
-
-const useWidthCondition = (conditionCheck: (width: number) => boolean) => {
-  const [conditionMet, setConditionMet] = useState(false)
-  useEffect(() => {
-    const onResize = () => setConditionMet(conditionCheck(window.innerWidth))
-    window.addEventListener('resize', onResize)
-    onResize()
-    return () => window.removeEventListener('resize', onResize)
-  })
-  return conditionMet
-}
 
 interface StopWatchLap {
   start?: Temporal.Instant
@@ -35,16 +23,15 @@ interface StopWatchState {
   laps: Array<StopWatchLap>
 }
 
-const StopWatch = () => {
-  const currTime = Temporal.Now.instant()
+const defaultState: StopWatchState = {
+  started: false,
+  laps: [],
+}
 
-  const defaultState: StopWatchState = {
-    started: false,
-    laps: [],
-  }
+const StopWatch = () => {
   const [state, setState] = useState(defaultState)
 
-  // console.log(state)
+  const currTime = Temporal.Now.instant()
 
   const isSmallScreen = useWidthCondition((width) => width < 650)
 
@@ -62,8 +49,6 @@ const StopWatch = () => {
   )
     .add(state.carry || new Temporal.Duration())
     .round({ largestUnit: 'hour' })
-
-  const buttonStyle: h.JSX.CSSProperties = { touchAction: 'manipulation' }
 
   const handleStartPause = async () => {
     setState((state) => {
@@ -101,7 +86,6 @@ const StopWatch = () => {
       }
     })
   }
-
   const handleLapClear = async () =>
     setState((state) => {
       if (state.started) {
@@ -122,32 +106,12 @@ const StopWatch = () => {
     })
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          width: 'min-content',
-        }}
-      >
+    <div class="wrapper__center wrapper__appwidth">
+      <div class={Styles.container}>
         <Typography
           {...(isSmallScreen ? { headline3: true } : { headline1: true })}
         >
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'auto auto auto auto auto auto auto',
-              width: 'min-content',
-              textAlign: 'center',
-            }}
-          >
+          <div class={Styles.viewcontainer}>
             <span>{zeroPad(deltaTime.hours, 2)}</span>
             <span>:</span>
             <span>{zeroPad(deltaTime.minutes, 2)}</span>
@@ -181,17 +145,13 @@ const StopWatch = () => {
             </Typography>
           </div>
         </Typography>
-        <div
-          style={{
-            display: 'flex',
-            gap: '1rem',
-          }}
-        >
+        <div class={Styles.buttonscontainer}>
           <Button
             ripple
             raised
             onClick={handleStartPause}
-            style={{ ...buttonStyle, ...{ padding: '1.5rem' } }}
+            class="touchbutton"
+            style={{ padding: '1.5rem' }}
           >
             {state.started
               ? 'Pause'
@@ -209,7 +169,8 @@ const StopWatch = () => {
               )
             }
             onClick={handleLapClear}
-            style={{ ...buttonStyle, ...{ padding: 'calc(1.5rem - 2px)' } }}
+            class="touchbutton"
+            style={{ padding: 'calc(1.5rem - 2px)' }}
           >
             {state.started ? 'Lap' : 'Clear'}
           </Button>
