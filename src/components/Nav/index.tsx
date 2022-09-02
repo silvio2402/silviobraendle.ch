@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import Styles from './styles.module.scss'
+import Styles from '@components/Nav/styles.module.scss'
 
 interface NavItem {
   className: string

@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import Styles from './styles.module.scss'
+import Styles from '@components/Button/styles.module.scss'
 
 interface ButtonProps {
   children: React.ReactNode

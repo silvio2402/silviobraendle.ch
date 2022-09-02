@@ -1,6 +1,6 @@
 import { h } from 'preact'
-import Styles from './styles.module.scss'
-import Tag from '../Tag/index'
+import Styles from '@components/PostPreview/styles.module.scss'
+import Tag from '@components/Tag/index'
 import type { MarkdownInstance } from 'astro'
 
 interface PostPreviewProps {

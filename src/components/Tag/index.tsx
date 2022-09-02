@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import Styles from './styles.module.scss'
+import Styles from '@components/Tag/styles.module.scss'
 
 const tagColorClassNames = [Styles.tag0, Styles.tag1, Styles.tag2, Styles.tag3]
 

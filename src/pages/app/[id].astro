@@ -1,15 +1,15 @@
 ---
-import MainHead from '../../components/MainHead.astro'
-import Button from '../../components/Button/index'
-import Footer from '../../components/Footer/index'
-import Nav from '../../components/Nav/index'
+import MainHead from '@components/MainHead.astro'
+import Button from '@components/Button/index'
+import Footer from '@components/Footer/index'
+import Nav from '@components/Nav/index'
 
 import 'preact-material-components/style.css'
 
-import Counter from '../../apps/Counter/index'
-import StopWatch from '../../apps/StopWatch/index'
-import SimonGame from '../../apps/SimonGame/index'
-import apps, { getApp } from '../../apps/apps'
+import Counter from '@apps/Counter/index'
+import StopWatch from '@apps/StopWatch/index'
+import SimonGame from '@apps/SimonGame/index'
+import apps, { getApp } from '@apps/apps'
 
 const id = Astro.params.id ? String(Astro.params.id) : undefined
 

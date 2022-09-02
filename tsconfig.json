@@ -21,6 +21,13 @@
 
     // Preact Typescript Configuration
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+
+    // Aliases
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@apps/*": ["src/apps/*"]
+    }
   }
 }
