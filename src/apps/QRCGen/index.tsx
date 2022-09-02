@@ -9,7 +9,7 @@ import Typography from 'preact-material-components/Typography'
 import TextField from 'preact-material-components/TextField'
 import Select from 'preact-material-components/Select'
 import Switch from 'preact-material-components/Switch'
-import Formfield from 'preact-material-components/Formfield'
+import FormField from 'preact-material-components/FormField'
 import Radio from 'preact-material-components/Radio'
 import Button from 'preact-material-components/Button'
 
@@ -187,7 +187,7 @@ const QRCGen = () => {
             <div class={Styles.radiocontainer}>
               <label>Encryption</label>
               <div class={Styles.radiobuttoncontainer}>
-                <Formfield>
+                <FormField>
                   <Radio
                     id="wifiencryptionnone"
                     name="wifiencryption"
@@ -195,8 +195,8 @@ const QRCGen = () => {
                     onChange={() => handleInputChange('radio', 'encryption', 0)}
                   />
                   <label for="wifiencryptionnone">None</label>
-                </Formfield>
-                <Formfield>
+                </FormField>
+                <FormField>
                   <Radio
                     id="wifiencryptionwpa"
                     name="wifiencryption"
@@ -204,8 +204,8 @@ const QRCGen = () => {
                     onChange={() => handleInputChange('radio', 'encryption', 1)}
                   />
                   <label for="wifiencryptionwpa">WPA/WPA2</label>
-                </Formfield>
-                <Formfield>
+                </FormField>
+                <FormField>
                   <Radio
                     id="wifiencryptionwep"
                     name="wifiencryption"
@@ -213,7 +213,7 @@ const QRCGen = () => {
                     onChange={() => handleInputChange('radio', 'encryption', 2)}
                   />
                   <label for="wifiencryptionwep">WEP</label>
-                </Formfield>
+                </FormField>
               </div>
             </div>
           </>
