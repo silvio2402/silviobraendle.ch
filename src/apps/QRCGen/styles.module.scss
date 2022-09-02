@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.select > * {
+  box-sizing: border-box;
+}
+
+.switchcontainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.radiocontainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.radiobuttoncontainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.collapsecontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.qrpreview {
+  max-width: 100%;
+  width: auto !important;
+  height: auto !important;
+}

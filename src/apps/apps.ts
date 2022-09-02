@@ -12,6 +12,13 @@ export interface App {
 export const apps: Array<App> = [
   {
     details: {
+      title: 'QR Code Generator',
+      description: 'Create QR codes of multiple types easily and quickly.',
+    },
+    id: 'qr-gen',
+  },
+  {
+    details: {
       title: 'Simon Game',
       description: 'Play the simon game online.',
     },
