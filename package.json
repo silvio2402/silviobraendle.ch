@@ -15,14 +15,14 @@
     "@astrojs/prefetch": "^0.0.7",
     "@astrojs/sitemap": "^1.0.0",
     "@types/qrcode": "^1.5.0",
-    "@types/react": "^18.0.17",
-    "astro": "^1.0.6",
+    "@types/react": "^18.0.18",
+    "astro": "^1.1.5",
     "preact-material-components": "^1.6.1",
-    "sass": "^1.54.4"
+    "sass": "^1.54.8"
   },
   "dependencies": {
     "@js-temporal/polyfill": "^0.4.2",
-    "preact": "^10.10.5",
+    "preact": "^10.10.6",
     "qrcode": "^1.5.1",
     "url-pattern": "^1.0.3"
   }
