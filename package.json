@@ -16,12 +16,13 @@
     "@astrojs/sitemap": "^1.0.0",
     "@types/qrcode": "^1.5.0",
     "@types/react": "^18.0.18",
-    "astro": "^1.1.8",
+    "astro": "^1.2.1",
     "preact-material-components": "^1.6.1",
     "sass": "^1.54.9"
   },
   "dependencies": {
     "@js-temporal/polyfill": "^0.4.2",
+    "firebase": "^9.9.4",
     "preact": "^10.10.6",
     "qrcode": "^1.5.1",
     "url-pattern": "^1.0.3"
