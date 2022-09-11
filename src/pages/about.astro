@@ -1,0 +1,289 @@
+---
+import MainHead from '@components/MainHead.astro'
+import Button from '@components/Button/index'
+import Footer from '@components/Footer/index'
+import Nav from '@components/Nav/index'
+
+const skills = [
+  {
+    name: 'JavaScript',
+    img: '/assets/about/javascript.png',
+    url: 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/',
+  },
+  {
+    name: 'Python',
+    img: '/assets/about/python.png',
+    url: 'https://www.python.org/',
+  },
+  {
+    name: 'TypeScript',
+    img: '/assets/about/typescript.png',
+    url: 'https://www.typescriptlang.org/',
+  },
+  {
+    name: 'C++',
+    img: '/assets/about/cpp.png',
+    url: 'https://isocpp.org/',
+  },
+  {
+    name: 'Lua',
+    img: '/assets/about/lua.png',
+    url: 'https://www.lua.org/',
+  },
+  {
+    name: 'React (JavaScript library)',
+    img: '/assets/about/react.png',
+    url: 'https://reactjs.org/',
+  },
+  {
+    name: 'Preact (JavaScript library)',
+    img: '/assets/about/preact.png',
+    url: 'https://preactjs.com/',
+  },
+  {
+    name: 'CSS',
+    img: '/assets/about/css.png',
+    url: 'https://www.w3.org/Style/CSS/',
+  },
+  {
+    name: 'HTML',
+    img: '/assets/about/html.png',
+    url: 'https://html.spec.whatwg.org/',
+  },
+  {
+    name: 'Node.js',
+    img: '/assets/about/node.png',
+    url: 'https://nodejs.org/',
+  },
+  {
+    name: 'matplotlib',
+    img: '/assets/about/matplotlib.png',
+    url: 'https://matplotlib.org/',
+  },
+  {
+    name: 'git',
+    img: '/assets/about/git.png',
+    url: 'https://git-scm.com/',
+  },
+  {
+    name: 'GitHub',
+    img: '/assets/about/github.png',
+    url: 'https://github.com/',
+  },
+  {
+    name: 'Docker',
+    img: '/assets/about/docker.png',
+    url: 'https://www.docker.com/',
+  },
+  {
+    name: 'Linux Containers (LXC)',
+    img: '/assets/about/lxc.png',
+    url: 'https://linuxcontainers.org/',
+  },
+  {
+    name: 'Proxmox Virtual Environment',
+    img: '/assets/about/proxmoxve.png',
+    url: 'https://www.proxmox.com/en/proxmox-ve/',
+  },
+  {
+    name: 'Arduino',
+    img: '/assets/about/arduino.png',
+    url: 'https://www.arduino.cc/',
+  },
+  {
+    name: 'Visual Studio Code',
+    img: '/assets/about/vscode.png',
+    url: 'https://code.visualstudio.com/',
+  },
+  {
+    name: 'Grafana',
+    img: '/assets/about/grafana.png',
+    url: 'https://grafana.com/',
+  },
+  {
+    name: 'PostgreSQL',
+    img: '/assets/about/postgresql.png',
+    url: 'https://www.postgresql.org/',
+  },
+  {
+    name: 'Node-RED',
+    img: '/assets/about/nodered.png',
+    url: 'https://nodered.org/',
+  },
+  {
+    name: 'MQTT',
+    img: '/assets/about/mqtt.png',
+    url: 'https://mqtt.org/',
+  },
+  {
+    name: 'Wireshark',
+    img: '/assets/about/wireshark.png',
+    url: 'https://www.wireshark.org/',
+  },
+  {
+    name: 'pfSense',
+    img: '/assets/about/pfsense.png',
+    url: 'https://www.pfsense.org/',
+  },
+  {
+    name: 'OpenVPN',
+    img: '/assets/about/openvpn.png',
+    url: 'https://openvpn.net/',
+  },
+  {
+    name: 'SolidWorks',
+    img: '/assets/about/solidworks.png',
+    url: 'https://www.solidworks.com/',
+  },
+  {
+    name: 'Adobe Illustrator',
+    img: '/assets/about/illustrator.png',
+    url: 'https://www.adobe.com/products/illustrator.html',
+  },
+  {
+    name: 'Adobe Photoshop',
+    img: '/assets/about/photoshop.png',
+    url: 'https://www.adobe.com/products/photoshop.html',
+  },
+  {
+    name: 'KiCAD',
+    img: '/assets/about/kicad.png',
+    url: 'https://www.kicad.org/',
+  },
+]
+
+const img = null
+---
+
+<html lang="en">
+  <head>
+    <MainHead
+      title="About | Silvio Brändle"
+      description="The personal site of Silvio Brändle"
+    />
+    <style lang="scss">
+      .heroImg {
+        max-height: 24rem;
+        object-fit: cover;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .bio {
+        font-size: var(--f-u1);
+        line-height: 2;
+      }
+
+      .content {
+        font-size: var(--f-u2);
+      }
+
+      .iconscontainer {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(2rem, 5rem));
+        line-height: 0;
+      }
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & > * {
+          max-height: 5rem;
+        }
+      }
+
+      .tablespacing {
+        width: 2rem;
+      }
+
+      .startalign {
+        text-align: start;
+      }
+    </style>
+  </head>
+  <body>
+    <Nav />
+    <main class="wrapper">
+      {
+        img ? (
+          <div class="heroImg">
+            <img width="1400" src={img} />
+          </div>
+        ) : null
+      }
+      <div class="wrapper wrapper__readable">
+        <div class="content">
+          <h1>Silvio Brändle</h1>
+          <p>
+            I’m Silvio, and this is my website where I post cool technologies,
+            my projects, and instructions. You can also use my interactive apps.
+          </p>
+          <h2>About Me</h2>
+          <h3>Skills/Technologies</h3>
+          <div class="iconscontainer">
+            {
+              skills.map((skill) => (
+                <a href={skill.url} title={skill.name} class="item">
+                  <img src={skill.img} alt={skill.name} />
+                </a>
+              ))
+            }
+          </div>
+          <h3>Education</h3>
+          <table>
+            <tr>
+              <th colspan="3" class="startalign">Secondary School</th>
+            </tr>
+            <tr>
+              <td>OS Wädenswil</td>
+              <td class="tablespacing"></td>
+              <td>2021 &ndash; present (ending 2023)</td>
+            </tr>
+            <tr>
+              <td>Schule Dandelion</td>
+              <td class="tablespacing"></td>
+              <td>2020 &ndash; 2021</td>
+            </tr>
+            <tr>
+              <th colspan="3" class="startalign">Primary School</th>
+            </tr>
+            <tr>
+              <td>Schule Dandelion</td>
+              <td class="tablespacing"></td>
+              <td>2018 &ndash; 2020</td>
+            </tr>
+            <tr>
+              <td>Homeschooling</td>
+              <td class="tablespacing"></td>
+              <td>2013 &ndash; 2018</td>
+            </tr>
+          </table>
+          <h3>Languages</h3>
+          <table>
+            <tr>
+              <td>(Swiss-)German</td>
+              <td class="tablespacing"></td>
+              <td>Native</td>
+            </tr>
+            <tr>
+              <td>English</td>
+              <td class="tablespacing"></td>
+              <td>Above average</td>
+            </tr>
+            <tr>
+              <td>French</td>
+              <td class="tablespacing"></td>
+              <td>School level</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
