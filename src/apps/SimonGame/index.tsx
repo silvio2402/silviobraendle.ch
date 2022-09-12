@@ -1,7 +1,7 @@
 import type { h } from 'preact'
 import { useState } from 'preact/hooks'
 
-import Styles from '@apps/SimonGame/styles.module.scss'
+import Styles from './styles.module.scss'
 
 import Typography from 'preact-material-components/Typography'
 import Button from 'preact-material-components/Button'
