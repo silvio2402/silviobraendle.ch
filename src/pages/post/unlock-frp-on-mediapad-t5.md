@@ -93,7 +93,7 @@ For unlocking the bootloader, you need a PC and the following tools. Unzip/Insta
 - Run PotatoNV which you downloaded previously.
 - Select the target device, select `Kirin 65x (a)` as the bootloader, and check the `Disable FBLOCK` box.
 - Click Start.
-  <video controls loop>
+  <video controls loop style="width: 100%">
     <source src="/assets/unlock-frp-on-mediapad-t5/potatonv.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -109,7 +109,7 @@ For unlocking the bootloader, you need a PC and the following tools. Unzip/Insta
   <img alt="Unlocked Warning" src="/assets/unlock-frp-on-mediapad-t5/fastboot.jpg">
 - Run the HUAWEI FRP Eraser Tool.
 - Click the "FRP Erase" button.
-  <video controls loop>
+  <video controls loop style="width: 100%">
     <source src="/assets/unlock-frp-on-mediapad-t5/huawei-frp-eraser-tool.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
