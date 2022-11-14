@@ -17,7 +17,7 @@ All information and material provided by this site is solely for educational pur
 
 ## Introduction
 
-Android introduced Factory Reset Protection (FRP) with Androis OS Version 5.1. When a Google account has been registered on a device and it is factory data reset in an untrusted environment (e.g. from recovery mode), the FRP lock will trigger, preventing setting up the device without authorizing it from the registered Google account.
+Android introduced Factory Reset Protection (FRP) with Android OS Version 5.1. When a Google account has been registered on a device and it is factory data reset in an untrusted environment (e.g. from recovery mode), the FRP lock will trigger, preventing setting up the device without authorizing it from the registered Google account.
 
 If someone doesn't have access (anymore) to the Google account which has been registered to their device, there are limited options available to reset the device. Although many forums claim that removing the FRP lock is impossible, I have managed to do it and would like to share this achievement.
 
