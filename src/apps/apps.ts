@@ -12,6 +12,13 @@ export interface App {
 export const apps: Array<App> = [
   {
     details: {
+      title: 'SudokuSolver',
+      description: 'Solve sudoku.',
+    },
+    id: 'sudoku-solver',
+  },
+  {
+    details: {
       title: 'QR Code Generator',
       description: 'Create QR codes of multiple types easily and quickly.',
     },
