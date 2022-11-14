@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sudokutable {
+  border: 2px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.row {
+}
+
+.cell {
+  border: 1px solid gray;
+  width: calc(100% / 9);
+  text-align: center;
+  aspect-ratio: 1 / 1;
+}
