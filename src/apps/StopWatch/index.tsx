@@ -1,10 +1,9 @@
-import 'preact/debug'
-import type { h } from 'preact'
+import { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { Temporal } from '@js-temporal/polyfill'
 import { useWidthCondition, zeroPad } from '@apps/util'
 
-import Styles from '@apps/StopWatch/styles.module.scss'
+import Styles from './styles.module.scss'
 
 import Typography from 'preact-material-components/Typography'
 import Button from 'preact-material-components/Button'

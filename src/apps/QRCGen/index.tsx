@@ -3,7 +3,7 @@ import { useMemo, useRef, useState } from 'preact/hooks'
 
 import QRCode from 'qrcode'
 
-import Styles from '@apps/QRCGen/styles.module.scss'
+import Styles from './styles.module.scss'
 
 import Typography from 'preact-material-components/Typography'
 import TextField from 'preact-material-components/TextField'
