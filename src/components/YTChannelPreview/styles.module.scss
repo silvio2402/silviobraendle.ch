@@ -1,0 +1,49 @@
+.content {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  min-height: 5rem;
+}
+
+.starcontainer {
+  position: relative;
+  top: -8px;
+  left: 0;
+}
+.star {
+  position: absolute;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  font-size: small;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+.avatarImage {
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+}
+.title {
+}
+.metadata {
+}
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

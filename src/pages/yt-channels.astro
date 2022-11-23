@@ -1,0 +1,88 @@
+---
+import MainHead from '@components/MainHead.astro'
+import Button from '@components/Button/index'
+import Footer from '@components/Footer/index'
+import Nav from '@components/Nav/index'
+import YouTubeChannels from '@components/YouTubeChannels/index'
+
+import 'preact-material-components/style.css'
+
+const img = null
+---
+
+<html lang="en">
+  <head>
+    <MainHead
+      title="YouTube Channels | Silvio Brändle"
+      description="The personal site of Silvio Brändle"
+    />
+    <script src="https://apis.google.com/js/api.js" is:inline></script>
+    <style lang="scss">
+      .heroImg {
+        max-height: 24rem;
+        object-fit: cover;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .bio {
+        font-size: var(--f-u1);
+        line-height: 2;
+      }
+
+      .content {
+        font-size: var(--f-u2);
+      }
+
+      .iconscontainer {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(2rem, 5rem));
+        line-height: 0;
+      }
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & > * {
+          max-height: 5rem;
+        }
+      }
+
+      .tablespacing {
+        width: 2rem;
+      }
+
+      .startalign {
+        text-align: start;
+      }
+    </style>
+  </head>
+  <body>
+    <Nav />
+    <main class="wrapper">
+      {
+        img ? (
+          <div class="heroImg">
+            <img width="1400" src={img} />
+          </div>
+        ) : null
+      }
+      <div class="wrapper wrapper__readable">
+        <div class="content">
+          <h1>YouTube Channels</h1>
+          <p>Here's a list of the YT channels I'm subscribed to.</p>
+          <YouTubeChannels
+            apiKey="AIzaSyCW_igU9_GLmkKMsRMWXsK0pnxJLotMAWM"
+            client:only="preact"
+          />
+        </div>
+      </div>
+      <Footer />
+    </main>
+  </body>
+</html>
