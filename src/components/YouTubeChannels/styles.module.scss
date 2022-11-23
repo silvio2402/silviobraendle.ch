@@ -1,0 +1,8 @@
+.channels {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: auto;
+  & > div {
+    overflow: auto;
+  }
+}

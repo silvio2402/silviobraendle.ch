@@ -25,6 +25,7 @@
     "firebase": "^9.14.0",
     "preact": "^10.11.3",
     "qrcode": "^1.5.1",
-    "url-pattern": "^1.0.3"
+    "url-pattern": "^1.0.3",
+    "youtube.ts": "silvio2402/youtube.ts#fix-browser-support"
   }
 }
