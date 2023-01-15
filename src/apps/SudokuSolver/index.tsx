@@ -364,12 +364,12 @@ const SudokuSolver = () => {
   const [elapsedTime, setElapsedTime] = useState<number | null>()
 
   const handleSolveClick = () => {
-    const startTime = Date.now()
+    const startTime = window.performance.now()
     if (values == null) return
     if (solve == null) return
     solve(values)
       .then((newValues) => {
-        const endTime = Date.now()
+        const endTime = window.performance.now()
         setElapsedTime(endTime - startTime)
         setOutValues(newValues)
       })
@@ -397,7 +397,7 @@ const SudokuSolver = () => {
           Solve
         </Button>
         <Typography headline4>
-          Output {elapsedTime ? `(${elapsedTime} ms)` : null}
+          Output {elapsedTime !== undefined ? `(${elapsedTime} ms)` : null}
         </Typography>
         <Sudoku values={outValues} editable={false} />
       </div>
