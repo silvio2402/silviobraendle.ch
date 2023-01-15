@@ -379,6 +379,11 @@ const SudokuSolver = () => {
       })
   }
 
+  let tStr = Intl.NumberFormat('en-US', { notation: 'compact' }).format(
+    elapsedTime || -1
+  )
+  console.log(elapsedTime)
+
   return (
     <div class="wrapper__center wrapper__appwidth">
       <div class={Styles.container}>
@@ -397,7 +402,7 @@ const SudokuSolver = () => {
           Solve
         </Button>
         <Typography headline4>
-          Output {elapsedTime !== undefined ? `(${elapsedTime} ms)` : null}
+          Output {elapsedTime != undefined && `(${tStr} ms)`}
         </Typography>
         <Sudoku values={outValues} editable={false} />
       </div>
