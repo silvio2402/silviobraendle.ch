@@ -1,11 +1,10 @@
 import type { h } from 'preact'
-import { useState, useRef, StateUpdater } from 'preact/hooks'
+import { useState, useRef, StateUpdater, useEffect } from 'preact/hooks'
 
 import Styles from '@apps/SudokuSolver/styles.module.scss'
 
 import Typography from 'preact-material-components/Typography'
 import Button from 'preact-material-components/Button'
-import type React from 'react'
 
 interface SudokuProps {
   values: (number | null)[]
@@ -17,10 +16,10 @@ const Sudoku = (props: SudokuProps) => {
   const { values, setValues, editable } = props
 
   const handleKeyPress = (
-    event: h.JSX.TargetedKeyboardEvent<HTMLTableCellElement>,
+    event: h.JSX.TargetedKeyboardEvent<HTMLElement>,
     fieldIndex: number
   ) => {
-    const target = event.target as HTMLTableCellElement
+    const target = event.target as HTMLElement
     const key = event.key
     event.preventDefault()
     if (target.innerText.length > 0 || !/^[1-9]*$/.test(key)) return
@@ -31,103 +30,24 @@ const Sudoku = (props: SudokuProps) => {
   }
 
   return (
-    <table class={Styles.sudokutable}>
-      <tbody>
-        {Array.from(Array(9).keys()).map((y) => (
-          <tr class={Styles.row} key={y}>
-            {Array.from(Array(9).keys()).map((x) => (
-              <td
-                class={Styles.cell}
-                contentEditable={editable}
-                onKeyPress={(e) => handleKeyPress(e, y * 9 + x)}
-                key={x}
-              >
-                {values[y * 9 + x]}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <ul class={Styles.sudoku}>
+      {Array.from(Array(9).keys()).map((y) => (
+        <>
+          {Array.from(Array(9).keys()).map((x) => (
+            <li
+              class={Styles.cell}
+              contentEditable={editable}
+              onKeyPress={(e) => handleKeyPress(e, y * 9 + x)}
+              key={x}
+            >
+              {values[y * 9 + x]}
+            </li>
+          ))}
+        </>
+      ))}
+    </ul>
   )
 }
-
-const checkPossible = (
-  values: (number | null)[],
-  index: number
-): Set<number> => {
-  const x = index % 9
-  const y = Math.floor(index / 9)
-  const b = Math.floor(x / 3) + Math.floor(y / 3) * 3 // Box index
-
-  // Gather horizontal values
-  const horizValues = new Set(
-    [...Array(9).keys()].map((xMap) => values[y * 9 + xMap])
-  )
-
-  // Gather vertical values
-  const vertValues = new Set(
-    [...Array(9).keys()].map((yMap) => values[yMap * 9 + x])
-  )
-
-  // Gather box values
-  const boxValues = new Set(
-    [...Array(9).keys()].map(
-      (iMap) =>
-        values[
-          (b % 3) * 3 +
-            Math.floor(b / 3) * 27 +
-            (iMap % 3) +
-            Math.floor(iMap / 3) * 9
-        ]
-    )
-  )
-
-  // Difference of sets horizValues, vertValues, and boxValues
-  // {1...9} - (horizValues ∪ vertValues ∪ boxValues)
-  const possible = new Set(
-    Array.from({ length: 9 }, (_, index) => index + 1).filter(
-      (i) => !horizValues.has(i) && !vertValues.has(i) && !boxValues.has(i)
-    )
-  )
-
-  return possible
-}
-
-const solve = async (values: (number | null)[]): Promise<(number | null)[]> =>
-  new Promise<(number | null)[]>(async (resolve, reject) => {
-    setTimeout(async () => {
-      // Find first empty cell
-      var firstClear: number | undefined
-      for (let i = 0; i < values.length; i++) {
-        if (values[i] == null) {
-          firstClear = i
-          break
-        }
-      }
-
-      if (firstClear == null) {
-        return resolve(values)
-      }
-
-      const possible = [...checkPossible(values, firstClear)]
-      if (possible.length <= 0) return reject()
-
-      for (let i = 0; i < possible.length; i++) {
-        const possibility = possible[i]
-        const newValues = Object.assign([], values, {
-          [firstClear]: possibility,
-        })
-        // Recursively solve
-        try {
-          const sValues = await solve(newValues)
-          resolve(sValues)
-        } catch {}
-      }
-
-      reject()
-    }, 0)
-  })
 
 const exampleValues = [
   [
@@ -213,7 +133,230 @@ const exampleValues = [
     null,
     null,
   ],
+  [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    7,
+    8,
+    9,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    1,
+    2,
+    3,
+    3,
+    1,
+    2,
+    8,
+    4,
+    5,
+    9,
+    6,
+    7,
+    6,
+    9,
+    7,
+    3,
+    1,
+    2,
+    8,
+    4,
+    5,
+    8,
+    4,
+    5,
+    6,
+    9,
+    7,
+    3,
+    1,
+    2,
+    2,
+    3,
+    1,
+    5,
+    7,
+    4,
+    6,
+    9,
+    8,
+    9,
+    6,
+    8,
+    2,
+    3,
+    1,
+    5,
+    7,
+    4,
+    5,
+    7,
+    4,
+    9,
+    6,
+    8,
+    2,
+    3,
+    null,
+  ],
+  [
+    6,
+    8,
+    null,
+    4,
+    null,
+    3,
+    null,
+    5,
+    null,
+    4,
+    null,
+    2,
+    null,
+    5,
+    null,
+    3,
+    6,
+    8,
+    5,
+    9,
+    3,
+    6,
+    7,
+    8,
+    null,
+    null,
+    4,
+    null,
+    1,
+    7,
+    2,
+    8,
+    6,
+    9,
+    4,
+    5,
+    8,
+    null,
+    9,
+    5,
+    null,
+    4,
+    2,
+    null,
+    7,
+    2,
+    5,
+    4,
+    3,
+    9,
+    7,
+    8,
+    1,
+    null,
+    7,
+    null,
+    null,
+    8,
+    3,
+    1,
+    5,
+    9,
+    2,
+    9,
+    3,
+    5,
+    null,
+    6,
+    null,
+    4,
+    null,
+    1,
+    null,
+    2,
+    null,
+    9,
+    null,
+    5,
+    null,
+    7,
+    3,
+  ],
 ]
+
+const possibleValues = (values: (number | null)[], index: number): number[] => {
+  var x = index % 9
+  var y = index / 9
+  var b = x / 3 + y // box index
+
+  // gather horizontal values
+  var horizValues = Array(9)
+  horizValues = horizValues.map((xMap) => values[y * 9 + xMap])
+
+  // gather vertical values
+  var vertValues = Array(9)
+  vertValues = values.map((val, index) => (val = values[index * 9 + x]))
+
+  // gather box values
+  var boxValues = Array(9)
+  boxValues = boxValues.map(
+    (_, index) => values[(b % 3) * 3 + b * 9 + (index % 3) + index * 3]
+  )
+
+  var possible = Array(9)
+    .fill(1)
+    .map((_, i) => i + 1)
+
+  // remove horizontal values
+  possible = possible.filter((val) => !horizValues.includes(val))
+
+  // remove vertical values
+  possible = possible.filter((val) => !vertValues.includes(val))
+
+  // remove box values
+  possible = possible.filter((val) => !boxValues.includes(val))
+
+  return possible
+}
+
+const solve = async (_values: (number | null)[]) => {
+  return new Promise<(number | null)[]>((resolve, reject) => {
+    let values = [..._values]
+
+    const _recurse = (index: number) => {
+      while (index < 81 && values[index] != null) index++
+      if (index >= 81) return true
+      let possible = possibleValues(values, index)
+      for (let i = 0; possible.length < 9; i++) {
+        values[index] = possible[i]
+        if (_recurse(index + 1)) return true
+      }
+      values[index] = null
+      return false
+    }
+
+    if (_recurse(0)) {
+      resolve(values)
+    } else reject("Couldn't solve.")
+  })
+}
 
 const SudokuSolver = () => {
   const [values, setValues] = useState<(number | null)[]>(Array(81))
@@ -221,16 +364,19 @@ const SudokuSolver = () => {
   const [elapsedTime, setElapsedTime] = useState<number | null>()
 
   const handleSolveClick = () => {
-    if (!confirm('Are you sure you would like to so start solving?'))
-      return null
     const startTime = Date.now()
+    if (values == null) return
+    if (solve == null) return
     solve(values)
       .then((newValues) => {
         const endTime = Date.now()
         setElapsedTime(endTime - startTime)
         setOutValues(newValues)
       })
-      .catch(() => alert("Couldn't solve."))
+      .catch((err) => {
+        alert("Couldn't solve.")
+        console.error(err)
+      })
   }
 
   return (

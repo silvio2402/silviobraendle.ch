@@ -4,18 +4,37 @@
   gap: 1rem;
 }
 
-.sudokutable {
-  border: 2px;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-}
-
-.row {
+.sudoku {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  padding: 0;
 }
 
 .cell {
   border: 1px solid gray;
-  width: calc(100% / 9);
-  text-align: center;
-  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  box-sizing: border-box;
+}
+
+.cell:nth-child(n):nth-child(-n + 9) {
+  border-top-width: 2px;
+}
+.cell:nth-child(n + 73):nth-child(-n + 81) {
+  border-bottom-width: 2px;
+}
+.cell:nth-child(3n) {
+  border-right-width: 2px;
+}
+.cell:nth-child(9n + 1) {
+  border-left-width: 2px;
+}
+.cell:nth-child(n + 19):nth-child(-n + 27) {
+  border-bottom-width: 2px;
+}
+.cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom-width: 2px;
 }
