@@ -302,27 +302,36 @@ const exampleValues = [
 ]
 
 const possibleValues = (values: (number | null)[], index: number): number[] => {
-  var x = index % 9
-  var y = index / 9
-  var b = x / 3 + y // box index
+  let x = index % 9
+  let y = Math.floor(index / 9)
+  // box index
+  let b = Math.floor(x / 3) + Math.floor(y / 3) * 3
 
   // gather horizontal values
-  var horizValues = Array(9)
-  horizValues = horizValues.map((xMap) => values[y * 9 + xMap])
+  let horizValues: (number | null)[] = []
+  for (let i = 0; i < 9; i++) {
+    horizValues.push(values[y * 9 + i])
+  }
 
   // gather vertical values
-  var vertValues = Array(9)
-  vertValues = values.map((val, index) => (val = values[index * 9 + x]))
+  let vertValues: (number | null)[] = []
+  for (let i = 0; i < 9; i++) {
+    vertValues.push(values[i * 9 + x])
+  }
 
   // gather box values
-  var boxValues = Array(9)
-  boxValues = boxValues.map(
-    (_, index) => values[(b % 3) * 3 + b * 9 + (index % 3) + index * 3]
-  )
+  let boxValues: (number | null)[] = []
+  for (let i = 0; i < 9; i++) {
+    const valI =
+      Math.floor(i / 3) * 9 + (i % 3) + Math.floor(b / 3) * 27 + (b % 3) * 3
+    console.log(valI)
+    boxValues.push(values[valI])
+  }
 
-  var possible = Array(9)
-    .fill(1)
-    .map((_, i) => i + 1)
+  let possible = []
+  for (let i = 0; i < 9; i++) {
+    possible[i] = i + 1
+  }
 
   // remove horizontal values
   possible = possible.filter((val) => !horizValues.includes(val))
@@ -332,6 +341,8 @@ const possibleValues = (values: (number | null)[], index: number): number[] => {
 
   // remove box values
   possible = possible.filter((val) => !boxValues.includes(val))
+
+  possible = possible.filter((val) => val != null)
 
   return possible
 }
@@ -344,7 +355,7 @@ const solve = async (_values: (number | null)[]) => {
       while (index < 81 && values[index] != null) index++
       if (index >= 81) return true
       let possible = possibleValues(values, index)
-      for (let i = 0; possible.length < 9; i++) {
+      for (let i = 0; i < possible.length; i++) {
         values[index] = possible[i]
         if (_recurse(index + 1)) return true
       }
