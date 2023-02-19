@@ -8,19 +8,19 @@ import PostPreview from '@components/PostPreview/index'
 
 // Data Fetching: List all Markdown posts in the repo.
 const posts = (await Astro.glob('./post/**/*.md'))
-	.filter(({ frontmatter }) => !!frontmatter.publishDate)
-	.sort(
-		(a, b) =>
-			new Date(b.frontmatter.publishDate).valueOf() -
-			new Date(a.frontmatter.publishDate).valueOf()
-	)
+  .filter(({ frontmatter }) => !!frontmatter.publishDate)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() -
+      new Date(a.frontmatter.publishDate).valueOf()
+  )
 
 let tags = posts.flatMap((post) =>
-	post.frontmatter.tags ? post.frontmatter.tags : []
+  post.frontmatter.tags ? post.frontmatter.tags : []
 )
 let tagCounts: Record<string, number> = {}
 for (const tag of tags) {
-	tags[tag] = (tags[tag] || 0) + 1
+  tags[tag] = (tags[tag] || 0) + 1
 }
 tags = [...new Set(tags)].sort((a, b) => tagCounts[b] - tagCounts[a])
 
@@ -31,228 +31,228 @@ const latestPost = posts[0]
 ---
 
 <html lang="en">
-	<head>
-		<MainHead
-			title="Silvio Brändle: Personal Site"
-			description="Silvio Brändle: Tech, code, and electronics"
-		/>
-		<style lang="scss">
-			$w-s: 750px;
+  <head>
+    <MainHead
+      title="Silvio Brändle: Personal Site"
+      description="Silvio Brändle: Tech, code, and electronics"
+    />
+    <style lang="scss">
+      $w-s: 750px;
 
-			.hero {
-				position: relative;
-				overflow: hidden;
-				background-image: url('/assets/mesh-gradient.jpg');
-				background-size: cover;
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background-image: url('/assets/mesh-gradient.jpg');
+        background-size: cover;
 
-				height: 50vw;
-				max-height: 500px;
+        height: 50vw;
+        max-height: 500px;
 
-				@media (min-width: $w-s) {
-					height: 45vw;
-				}
+        @media (min-width: $w-s) {
+          height: 45vw;
+        }
 
-				@media (max-width: 430px) {
-					height: 300px;
-				}
-			}
+        @media (max-width: 430px) {
+          height: 300px;
+        }
+      }
 
-			.overlay {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				height: 100%;
-				// z-index: 10;
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				justify-content: center;
-				padding-left: 2rem;
-				padding-right: 1rem;
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        // z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding-left: 2rem;
+        padding-right: 1rem;
 
-				@media (min-width: $w-s) {
-					padding-left: 4rem;
-				}
-			}
+        @media (min-width: $w-s) {
+          padding-left: 4rem;
+        }
+      }
 
-			.title {
-				font-weight: 900;
-				font-size: var(--f-u8);
-				margin-bottom: 0.5rem;
-				margin-top: 0;
+      .title {
+        font-weight: 900;
+        font-size: var(--f-u8);
+        margin-bottom: 0.5rem;
+        margin-top: 0;
 
-				@media (min-width: $w-s) {
-					font-size: var(--f-u12);
-				}
-			}
+        @media (min-width: $w-s) {
+          font-size: var(--f-u12);
+        }
+      }
 
-			.grid {
-				display: grid;
-				grid-gap: 2rem;
+      .grid {
+        display: grid;
+        grid-gap: 2rem;
 
-				@media (min-width: 1200px) {
-					grid-template-columns: 2fr 1fr;
-				}
-			}
+        @media (min-width: 1200px) {
+          grid-template-columns: 2fr 1fr;
+        }
+      }
 
-			.sectionTitle {
-				font-weight: 700;
-				font-size: var(--f-u8);
-				margin-top: 4rem;
-				margin-bottom: 2rem;
-			}
+      .sectionTitle {
+        font-weight: 700;
+        font-size: var(--f-u8);
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+      }
 
-			.roleWrapper {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				@media (max-width: 500px) {
-					gap: 1rem;
-				}
-			}
+      .roleWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        @media (max-width: 500px) {
+          gap: 1rem;
+        }
+      }
 
-			.role {
-				position: relative;
-				display: inline-block;
-				font-weight: 900;
-				color: var(--t-bg);
-				background-color: var(--t-fg);
-				padding: 0.25em 0.5em;
-				z-index: 2;
+      .role {
+        position: relative;
+        display: inline-block;
+        font-weight: 900;
+        color: var(--t-bg);
+        background-color: var(--t-fg);
+        padding: 0.25em 0.5em;
+        z-index: 2;
 
-				@media (min-width: $w-s) {
-					font-size: var(--f-u3);
-				}
+        @media (min-width: $w-s) {
+          font-size: var(--f-u3);
+        }
 
-				+ .role {
-					// margin-left: 1em;
-				}
+        + .role {
+          // margin-left: 1em;
+        }
 
-				&:nth-of-type(1) {
-					.invert {
-						background-color: var(--c-pink);
-					}
-				}
+        &:nth-of-type(1) {
+          .invert {
+            background-color: var(--c-pink);
+          }
+        }
 
-				&:nth-of-type(2) {
-					.invert {
-						background-color: var(--c-blue);
-					}
-				}
+        &:nth-of-type(2) {
+          .invert {
+            background-color: var(--c-blue);
+          }
+        }
 
-				&:nth-of-type(3) {
-					.invert {
-						background-color: var(--c-green);
-					}
-				}
+        &:nth-of-type(3) {
+          .invert {
+            background-color: var(--c-green);
+          }
+        }
 
-				&:hover {
-					.invert {
-						clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-					}
-				}
-				.roleemoji {
-					@media (max-width: 430px) {
-						display: none;
-					}
-				}
-			}
+        &:hover {
+          .invert {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+          }
+        }
+        .roleemoji {
+          @media (max-width: 430px) {
+            display: none;
+          }
+        }
+      }
 
-			.invert {
-				position: absolute;
-				color: var(--t-fg);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				right: 0;
-				bottom: 0;
-				top: 0;
-				left: 0;
-				pointer-events: none;
-				clip-path: polygon(0% 100%, 100% 100%, 100% 200%, 0% 200%);
-				transition: clip-path cubic-bezier(0.4, 0, 0.5, 1) 150ms;
-			}
+      .invert {
+        position: absolute;
+        color: var(--t-fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        clip-path: polygon(0% 100%, 100% 100%, 100% 200%, 0% 200%);
+        transition: clip-path cubic-bezier(0.4, 0, 0.5, 1) 150ms;
+      }
 
-			.desc {
-				font-size: var(--f-u2);
-				margin-top: 1.5rem;
-				margin-bottom: 0;
-			}
+      .desc {
+        font-size: var(--f-u2);
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+      }
 
-			.subtitle {
-				display: block;
-				font-weight: 400;
-				font-size: var(--f-d6);
-				letter-spacing: -0.0625em;
-			}
+      .subtitle {
+        display: block;
+        font-weight: 400;
+        font-size: var(--f-d6);
+        letter-spacing: -0.0625em;
+      }
 
-			.bio {
-				line-height: 2;
+      .bio {
+        line-height: 2;
 
-				> span:first-of-type {
-					line-height: 1;
-					margin-bottom: 0.5em;
-					display: block;
-					font-weight: 700;
-					font-size: var(--f-u4);
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Nav />
-		<header class="hero">
-			<div class="overlay">
-				<h1 class="title">
-					<small class="subtitle">The personal site of</small>Silvio Brändle
-				</h1>
-				<div class="roleWrapper">
-					<span class="role"
-						><span class="roleemoji">👩‍💻</span>&nbsp;Code<span class="invert"
-							><span class="roleemoji">👩‍💻</span>&nbsp;Code</span
-						>
-					</span>
-					<span class="role"
-						><span class="roleemoji">⚙️</span>&nbsp;Technology<span
-							class="invert"
-							><span class="roleemoji">⚙️</span>&nbsp;Technology</span
-						>
-					</span>
-					<span class="role"
-						><span class="roleemoji">🔌</span>&nbsp;Electonics<span
-							class="invert"
-							><span class="roleemoji">🔌</span>&nbsp;Electonics</span
-						>
-					</span>
-				</div>
-				<p class="desc">Lover of tech, code, and electronics.</p>
-			</div>
-		</header>
-		<main class="wrapper mt4 mb4">
-			<div class="grid">
-				<section class="section">
-					<h3 class="sectionTitle">Latest Post</h3>
-					{latestPost ? <PostPreview post={latestPost} tags={tags} /> : null}
-					<div class="tac mt4">
-						<a href="/posts">
-							<Button>View All</Button>
-						</a>
-					</div>
-				</section>
-				<section class="section">
-					<h3 class="sectionTitle">About me</h3>
-					<p class="bio">
-						<span>Hello!</span> I’m Silvio, and this is my website where I post cool
-						technologies, my projects, and instructions. You can also use my interactive
-						apps.
-					</p>
-					<p>
-						<a href="/about" aria-label="Read more about me">Read more</a>
-					</p>
-				</section>
-			</div>
-		</main>
-		<Footer />
-	</body>
+        > span:first-of-type {
+          line-height: 1;
+          margin-bottom: 0.5em;
+          display: block;
+          font-weight: 700;
+          font-size: var(--f-u4);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Nav />
+    <header class="hero">
+      <div class="overlay">
+        <h1 class="title">
+          <small class="subtitle">The personal site of</small>Silvio Brändle
+        </h1>
+        <div class="roleWrapper">
+          <span class="role"
+            ><span class="roleemoji">👩‍💻</span>&nbsp;Code<span class="invert"
+              ><span class="roleemoji">👩‍💻</span>&nbsp;Code</span
+            >
+          </span>
+          <span class="role"
+            ><span class="roleemoji">⚙️</span>&nbsp;Technology<span
+              class="invert"
+              ><span class="roleemoji">⚙️</span>&nbsp;Technology</span
+            >
+          </span>
+          <span class="role"
+            ><span class="roleemoji">🔌</span>&nbsp;Electronics<span
+              class="invert"
+              ><span class="roleemoji">🔌</span>&nbsp;Electronics</span
+            >
+          </span>
+        </div>
+        <p class="desc">Lover of tech, code, and electronics.</p>
+      </div>
+    </header>
+    <main class="wrapper mt4 mb4">
+      <div class="grid">
+        <section class="section">
+          <h3 class="sectionTitle">Latest Post</h3>
+          {latestPost ? <PostPreview post={latestPost} tags={tags} /> : null}
+          <div class="tac mt4">
+            <a href="/posts">
+              <Button>View All</Button>
+            </a>
+          </div>
+        </section>
+        <section class="section">
+          <h3 class="sectionTitle">About me</h3>
+          <p class="bio">
+            <span>Hello!</span> I’m Silvio, and this is my website where I post cool
+            technologies, my projects, and instructions. You can also use my interactive
+            apps.
+          </p>
+          <p>
+            <a href="/about" aria-label="Read more about me">Read more</a>
+          </p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>
